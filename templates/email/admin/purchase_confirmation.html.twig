@@ -1,0 +1,60 @@
+{% extends "email/base.html.twig" %}
+
+{% block title %}Commande reçue{% endblock %}
+
+{% block body %}
+    <h1>Vous avez reçu une commande</h1>
+
+
+    <div>
+        <h3>Réf.</h3>
+        <p>{{purchase.ref}}</p>
+    </div>
+    <div>
+        <h3>Adresse email</h3>
+        <p>{{purchase.user.email}}</p>
+    </div>
+    <div>
+        <h3>Adresse de livraison</h3>
+        {% set address = purchase.deliveryDetail %}
+        <p>
+            {{ address.lineOne }}
+            {% if address.lineTwo is not null %}<br>{{ address.lineTwo }}{% endif %} 
+            <br>{{ address.postcode }}
+            <br>{{ address.city }}
+            <br>{{ address.country }}
+        </p>
+    </div>
+    <div>
+        <h3>Adresse de facturation</h3>
+        {% set address = purchase.invoiceDetail %}
+        <p>
+            {{ address.lineOne }}
+            {% if address.lineTwo is not null %}<br>{{ address.lineTwo }}{% endif %} 
+            <br>{{ address.postcode }}
+            <br>{{ address.city }}
+            <br>{{ address.country }}
+        </p>
+    </div>
+    <div>
+        <h3>Détail de la commande</h3>
+        {% for purchaseLine in purchase.purchaseLines %}
+            <div>{{ purchaseLine.quantity }} x {{ purchaseLine.product.designation }} (réf. publique : {{ purchaseLine.product.publicRef }}) = {{ purchaseLine.totalPrice | price_format }}</div>
+        {% endfor %}
+        <br>
+        <div>Prix total : {{ purchase.totalPrice | price_format }}</div>
+    </div>
+    <div>
+        <h3>Date de la commande</h3>
+        <div>{{ purchase.createdAt.format('d/m/Y H:h') }}</div>
+    </div>
+    <div>
+        <h3>Statut</h3>
+        <div>{{ purchase.statusLabel }}</div>
+    </div>
+    <br>
+    <br>
+    <a href={{ url('admin_purchase_index') }}>Cliquez ici pour gérer les commandes</a>
+
+
+{% endblock %}

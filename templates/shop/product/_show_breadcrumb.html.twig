@@ -1,0 +1,13 @@
+<div class="breadcrumb">
+    <a href={{ path('home') }} class="breadcrumb-home-link">Accueil</a>
+    {% if product.category %}
+        >
+        <a href={{ path('category_show', {slug: product.category.slug}) }} class="breadcrumb-link">{{ product.category.name }}</a>
+    {% endif %}
+    {% if product.subcategory %}
+        >
+        <a href={{ path('subCategory_show', {categorySlug: product.category.slug, subCategorySlug: product.subCategory.slug}) }} class="breadcrumb-link">{{ product.subCategory.name }}</a>
+    {% endif %}
+        >
+        <span class="breadcrumb-item">{{ product.designation }}</span>
+</div>

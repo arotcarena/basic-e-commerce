@@ -1,0 +1,33 @@
+/*admin-filters*/
+.admin-filters-container {
+    max-width: calc(100vw - 50px);
+    margin: 20px auto;
+    padding: 20px 20px 10px;
+    box-shadow: 0 0 2px var(--color-admin-lightgrey);
+    border-radius: 8px;
+}
+.admin-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.admin-filters-row {
+    display: flex;
+    gap: 20px;
+}
+.admin-filters-row select {
+    min-width: 150px;
+}
+
+.admin-filters-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-count {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 20px 15px;
+}

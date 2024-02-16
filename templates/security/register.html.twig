@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+
+        {{ include('form/_form_row.html.twig', {name: 'email', label: 'Adresse email', field: registrationForm.email}) }}
+        
+        {{ include('form/_form_row.html.twig', {name: 'plainPassword', label: 'Mot de passe', field: registrationForm.plainPassword}) }}
+        
+        {{ include('form/_form_row.html.twig', {name: 'passwordConfirm', label: 'Confirmez le mot de passe', field: registrationForm.passwordConfirm}) }}
+        
+        {{ include('form/_form_row.html.twig', {name: 'agreeTerms', label: 'Accepter les conditions générales d\'utilisation', field: registrationForm.agreeTerms}) }}
+
+        <button type="submit" class="form-button auth-form-button">Créer un compte</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

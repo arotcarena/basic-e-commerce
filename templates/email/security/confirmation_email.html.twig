@@ -1,0 +1,15 @@
+{% extends "email/base.html.twig" %}
+
+{% block title %}Vérifiez votre adresse email{% endblock %}
+
+{% block body %}
+    <h1>Vérifiez votre adresse email</h1>
+
+    <p>Bienvenue sur notre site ! Afin d'activer votre compte, veuillez cliquer sur le lien ci-dessous (valide 48h)</p>
+
+    <p>
+        <a href={{ link }}>Activer mon compte</a>
+    </p>
+
+    <p>A très bientôt !</p>
+{% endblock %}

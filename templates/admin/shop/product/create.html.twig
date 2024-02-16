@@ -1,0 +1,55 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_product_index') }} class="breadcrumb-link">Produits ({{count_products}})</a>
+        >
+        <span class="breadcrumb-item">Ajouter</span>
+    </div>
+
+    <h1>Ajouter un produit</h1>
+
+    {{ form_start(form) }}
+    <div class="admin-form">
+        <div class="admin-form-row">
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'pictureOne', label: 'Photo principale *', field: form.pictureOne}) }}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'altOne', label: 'Balise alt', field: form.altOne}) }}
+        </div>
+        <div class="admin-form-row">
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'pictureTwo', label: 'Photo n°2', field: form.pictureTwo}) }}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'altTwo', label: 'Balise alt', field: form.altTwo}) }}
+        </div>
+        <div class="admin-form-row">
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'pictureThree', label: 'Photo n°3', field: form.pictureThree}) }}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'altThree', label: 'Balise alt', field: form.altThree}) }}
+        </div>
+
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'designation', label: 'Désignation *', field: form.designation}) }}
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'slug', label: 'Slug (url) *', field: form.slug}) }}
+        
+        <div class="admin-form-part" data-controller="categoryselect">
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'category', label: 'Catégorie', field: form.category}) }}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'subCategory', label: 'Sous-catégorie', field: form.subCategory}) }}
+        </div>
+
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'price', label: 'Prix *', field: form.price}) }}
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'stock', label: 'Stock *', field: form.stock}) }}
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'publicRef', label: 'Réf. publique *', field: form.publicRef}) }}
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'privateRef', label: 'Réf. privée', field: form.privateRef}) }}
+
+        {# géré en react #}
+        <div id="suggested-products-input">
+            {# si js désactivé, le champ classique s'affiche #}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'suggestedProducts', label: 'Produits à suggérer', field: form.suggestedProducts}) }}
+        </div>
+
+        <div class="admin-form-submit">
+            <button type="submit" class="admin-button">Ajouter</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,8 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        category_global_provider: '@App\Service\CategoryGlobalProvider'
+
+when@test:
+    twig:
+        strict_variables: true

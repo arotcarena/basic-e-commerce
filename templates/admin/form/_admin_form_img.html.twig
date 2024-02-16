@@ -1,0 +1,11 @@
+<div class="admin-form-img-container">
+    <img class="admin-form-img" src="{{ picture | picture_path_resolver('index') }}" alt="{{ picture | picture_alt_resolver }}">
+    <span class="admin-form-img-alt">Balise alt : "{{ picture | picture_alt_resolver }}"</span>
+    {% if isFirst is not defined %}
+        <a class="admin-form-img-remover" href={{ path('admin_picture_delete', {id: picture.id}) }} title='Supprimer la photo'>
+            <svg class="icon i-trash">
+                <use xlink:href="/svg/sprite.svg#delete"></use>
+            </svg>
+        </a>
+    {% endif %}
+</div>

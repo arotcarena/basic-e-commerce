@@ -1,0 +1,110 @@
+
+
+/*admin-form*/
+.admin-form {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.admin-form-part {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-form-control {
+    display: block;
+    height: 35px;
+    border: solid 1px var(--color-admin-lightgrey);
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 0 10px;
+}
+.admin-form .admin-form-control {
+    width: 100%;
+    font-size: 1.1em;
+}
+.admin-form-row {
+    display: flex;
+    gap: 20px;
+}
+.admin-form .admin-form-row .admin-form-control {
+    width: auto;
+}
+
+.admin-form-submit {
+    display: flex;
+    justify-content: center;
+}
+.admin-form-group.is-invalid .admin-form-control {
+    border: solid 1px red;
+}
+.admin-form-group.is-invalid label {
+    color: red;
+}
+.admin-form-error li {
+    margin: 4px 0;
+    color: red;
+    font-size: 0.8em;
+}
+.admin-form-info {
+    margin: 4px 0;
+    font-size: 0.8em;
+    color: var(--color-admin-lightgrey);
+}
+
+.admin-form-img-container {
+    position: relative;
+    width: 225px;
+    height: 225px;
+}
+.admin-form-img-container img {
+    width: 225px;
+    height: 225px;
+}
+.admin-form-img-container .admin-form-img-alt {
+    position: absolute;
+    background-color: #FFF;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 4px;
+}
+.admin-form-img-container .admin-form-img-remover {
+    position: absolute;
+    bottom: 0;
+    left: calc(100% + 5px);
+}
+.admin-form-img-container .admin-form-img-remover .i-trash {
+    width: 2em;
+    height: 2em;
+}
+
+.admin-form-subCategory-item.current {
+    font-weight: 600;
+}
+
+
+
+.admin-form-field-with-button {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.admin-form-field-with-button-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.admin-form-field-with-button-controls .admin-button {
+    margin: 0;
+}
+
+
+.admin-product-show-row.full-width {
+    width: 100%;
+}

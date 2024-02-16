@@ -1,0 +1,18 @@
+<div class="form-group {{ name }}-group {% if form_errors(field) %}is-invalid{% endif %}">
+    {# class pas bon à modif #}
+    {{ form_label(field, label, {
+        attr: {
+            class: 'form-label'    
+        }
+    }) }}
+    {{ form_widget(field, {
+        attr: {
+            class: 'form-control'
+        }
+    }) }}
+    {% if form_errors(field) %}
+        <div class="form-error">
+            {{ form_errors(field) }}
+        </div>
+    {% endif %}
+</div>

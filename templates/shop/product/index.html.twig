@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block add_stylesheets %}
+    {{ encore_entry_link_tags('productIndex') }}
+{% endblock %}
+
+{% block add_javascripts %}
+    {{ encore_entry_script_tags('productIndex') }}
+{% endblock %}
+
+
+{% block body %}
+    <div class="breadcrumb">
+        <a href={{ path('home') }} class="breadcrumb-home-link">Accueil</a>
+        >
+        <span class="breadcrumb-item">Recherche</span>
+    </div>
+    <div id="product-index" data-search={{ search_formated }}>
+        {% if search is not same as '' %}
+            <h1>Résultats pour "{{ search }}"</h1>
+        {% endif %}
+    </div>
+{% endblock %}

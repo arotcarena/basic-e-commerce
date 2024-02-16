@@ -1,0 +1,45 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_category_index') }} class="breadcrumb-link">Catégories ({{ count_categories }})</a>
+        >
+        <a href={{ path('admin_category_show', {id: category.id}) }} class="breadcrumb-link">{{ category.name }}</a>
+        >
+        <a href={{ path('admin_subCategory_show', {id: subCategory.id}) }} class="breadcrumb-link">{{ subCategory.name }}</a>
+        >
+        <span class="breadcrumb-item">Modifier</span>
+    </div>
+
+    <h1>Modifier la sous-catégorie "{{ subCategory.name }}"</h1>
+
+
+     {{ form_start(form) }}
+    <div class="admin-form">
+        {% if subCategory.picture is not null %}
+            {{ include('admin/form/_admin_form_img.html.twig', {picture: subCategory.picture, isFirst: true}) }}
+        {% endif %}
+        <div class="admin-form-row">
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'picture', label: 'Photo principale *', field: form.picture}) }}
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'alt', label: 'Balise alt', field: form.alt}) }}
+        </div>
+       
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'name', label: 'Nom *', field: form.name}) }}
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'slug', label: 'Slug (url) *', field: form.slug}) }}
+
+        <div data-controller="subcategorieslistposition" data-subcategoryid={{ subCategory.id }}>
+            {{ include('admin/form/_admin_form_row.html.twig', {name: 'parentCategory', label: 'Catégorie parente', field: form.parentCategory}) }}
+        </div>
+
+        {{ include('admin/form/_admin_form_row.html.twig', {name: 'listPosition', label: 'Position', field: form.listPosition}) }}
+
+        <div class="admin-form-submit">
+            <button type="submit" class="admin-button">Modifier</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

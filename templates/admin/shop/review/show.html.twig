@@ -1,0 +1,62 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_review_index') }} class="breadcrumb-link">Avis ({{reviews_pending_count}})</a>
+        >
+        <span class="breadcrumb-item">{{ review.product.designation }}</span>
+    </div>
+
+    <h1>Avis sur "{{ review.product.designation }}"</h1>
+
+    <div class="admin-product-show">
+        
+        
+        <div class="admin-row">
+            {% set product = review.product %}
+            <div class="admin-col">
+                {% if product.pictures %}
+                    {% set picture = product_picture_position_resolver(product, 1) %}
+                    <a href={{ product_show_url }}>
+                        <img src={{ picture | picture_path_resolver('index') }} alt={{ picture | picture_alt_resolver }}>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="admin-col">
+                <p><a class="admin-link productDesignation" href={{ product_show_url }}>{{ product.designation }}</a></p>
+                <p>Réf. publique : {{ product.publicRef }}</p>
+                <p>Prix : {{ product.price | price_format }}</p>
+                {% if product.category %}
+                    <p>Catégorie : {{ product.category.name }}</p>
+                {% endif %}
+                {% if product.subCategory %}
+                    <p>Sous-catégorie : {{ product.subCategory.name }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        {{ include('admin/parts/_show_row.html.twig', {value: review.fullName, label: 'Nom', name: 'fullName'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: review.user.email, label: 'Adresse email', name: 'email'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: review.rate, label: 'Note', name: 'rate'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: review.comment, label: 'Commentaire', name: 'comment'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: review.createdAt.format('d/m/Y H:i'), label: 'Date', name: 'createdAt'}) }}
+        
+        <div class="admin-product-show-row full-width">
+            <div class="admin-product-show-row-label">Modération</div>
+            {% set jsonStatusLabel = (review.moderationStatusLabel | split(' ')) | join('_') %}
+            <div id="review-moderator" data-id={{ review.id }} data-statuslabel={{ jsonStatusLabel }}>
+                {# Géré en react #}
+                <div class="moderationStatus">{{ review.moderationStatusLabel }}</div> {# Utile pour le test et pour affichage temporaire #}
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock %}

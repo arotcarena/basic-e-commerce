@@ -1,0 +1,20 @@
+.modal-container {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.modal-closer {
+    position: absolute;
+    z-index: 3;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.modal-closer .i-close {
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,10 @@
+.cart-summary {
+    margin-bottom: 50px;
+}
+.cart-summary ul > li > div:first-child {
+    display: flex;
+}
+.cart-summary img {
+    width: 60px;
+    height: auto;
+}

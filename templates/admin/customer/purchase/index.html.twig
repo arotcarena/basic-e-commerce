@@ -1,0 +1,80 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_purchase_index') }} class="breadcrumb-link">Commandes ({{count_purchases}})</a>
+    </div>
+
+
+    <div class="admin-container">
+        <h1>Commandes</h1>
+
+        {# filtres #}
+        {{ form_start(form) }}
+            <div class="admin-filters-container">
+                <div class="admin-filters">
+                    <div class="admin-filters-row">            
+                        {{ include('admin/form/_admin_form_row.html.twig', {name: 'status', label: 'Filtrer par statut', field: form.status}) }}
+                    </div>
+                    <div class="admin-filters-row">   
+                        {{ include('admin/form/_admin_form_row.html.twig', {name: 'sortBy', label: 'Tri', field: form.sortBy}) }}
+                    </div>
+                </div>
+                <div class="admin-filters-submit">
+                    <button type="submit" class="admin-button">Recherche</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+
+
+        {# total items count #}
+        <div class="admin-count">
+            {{ pagination.getTotalItemCount }} résultat{% if pagination.getTotalItemCount > 1 %}s{% endif %}
+            
+        </div>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Réf.</th>
+                    <th>Utilisateur</th>
+                    <th>Prix total</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in pagination %}
+                    <tr{% if purchase.strong %} class="strong"{% endif %}>
+
+                        <td class="ref">{{ purchase.ref }}</td>
+                        <td class="user">{{ purchase.user.email ?? 'Anonyme' }}</td>
+                        <td class="totalPrice">{{ purchase.totalPrice | price_format }}</td>
+                        <td class="status" value={{ purchase.status }}>{{ purchase.statusLabel }}</td>
+                        <td class="createdAt" value={{ purchase.createdAt.timestamp }}>{{ purchase.createdAt.format('d/m/Y H:i') }}</td>
+                        <td class="controls">
+                            <a class="admin-table-button success" href="{{ path('admin_purchase_show', {id: purchase.id}) }}" title="Voir la commande">
+                                <svg class="icon">
+                                    <use xlink:href="/svg/sprite.svg#eye"></use>
+                                </svg>
+                            </a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+        <div class="admin-navigation">
+            {{ knp_pagination_render(pagination, 'admin/layouts/_admin_pagination.html.twig') }}
+        </div>
+
+   </div>
+
+{% endblock %}

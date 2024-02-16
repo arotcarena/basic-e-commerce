@@ -1,0 +1,67 @@
+.suggestedProducts-group {
+    position: relative;
+}
+.suggestedProducts-group .admin-form-control {
+    padding-right: 25px;
+}
+.admin-suggest-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: #FFF;
+    box-shadow: 0 0 2px var(--color-admin-black);
+    margin-bottom: 30px;
+}
+
+.admin-suggest-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px;
+}
+.admin-suggest-item:hover, .admin-suggest-item.selected {
+    background-color: var(--color-admin-secondary);
+}
+.admin-suggest-img {
+    height: 100px;
+    width: 100px;
+    flex: none;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.admin-suggestedProducts-input-closer {
+    position: absolute;
+    right: 4px;
+    bottom: 6px;
+}
+.admin-suggestedProducts-input-closer .icon {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+
+.admin-suggestedProducts-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+    margin: 10px 0;
+    width: 300px;
+    padding-right: 40px;
+    box-shadow: 0 0 2px var(--color-admin-black);
+}
+
+.admin-suggestedProducts-closer {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.admin-suggestedProducts-closer .icon {
+    width: 1.7em;
+    height: 1.7em;
+}

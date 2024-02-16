@@ -1,0 +1,88 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_product_index') }} class="breadcrumb-link">Produits ({{count_products}})</a>
+    </div>
+
+   <div class="admin-container">
+        <h1>Produits</h1>
+
+        {% include "admin/shop/product/parts/_filters.html.twig" %}
+
+
+        {# total items count #}
+        <div class="admin-count">
+            {{ pagination.getTotalItemCount }} résultat{% if pagination.getTotalItemCount > 1 %}s{% endif %}
+            
+        </div>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Photo principale</th>
+                    <th>Désignation</th>
+                    <th>Catégorie / sous-catégorie</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Réf. publique</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in pagination %}
+                    <tr>
+                        <td class="admin-table-td-img">
+                            <img class="admin-table-img" src={{ product.firstPicture | picture_path_resolver('index') }} alt={{ product.firstPicture | picture_alt_resolver }}>
+                        </td>
+                        <td>{{ product.designation }}
+                        <td>
+                            {% if product.category %}{{product.category.name}}{% endif %}
+                            {% if product.subCategory %} / {{product.subCategory.name}}{% endif %}
+                        </td>
+                        <td class="no-white-space-wrap">{{ product.price | price_format }}</td>
+                        <td>{{ product.stock }}</td>
+                        <td>{{ product.publicRef }}</td>
+                        <td>
+                            <div class="admin-table-controls">
+                                <a class="admin-table-button success" href="{{ path('admin_product_show', {id: product.id}) }}" title="Voir">
+                                    <svg class="icon">
+                                        <use xlink:href="/svg/sprite.svg#eye"></use>
+                                    </svg>
+                                </a>
+                                <a class="admin-table-button success" href="{{ path('admin_product_update', {id: product.id}) }}" title="Modifier">
+                                    <svg class="icon">
+                                        <use xlink:href="/svg/sprite.svg#edit"></use>
+                                    </svg>
+                                </a>
+                                <form action="{{ path('admin_product_delete') }}" method="POST">
+                                    <button class="admin-table-button danger" name="id" value="{{ product.id }}" type="submit" title="Supprimer"
+                                            data-controller="deleteconfirm" data-deletemessage='Supprimer_définitivement_le_produit_"{{ product.designation }}" ?'
+                                    >
+                                        <svg class="icon">
+                                            <use xlink:href="/svg/sprite.svg#delete"></use>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+        <div class="admin-navigation">
+            {{ knp_pagination_render(pagination, 'admin/layouts/_admin_pagination.html.twig') }}
+        </div>
+
+        <div class="admin-buttons-fixed-wrapper">
+            <a class="admin-button" href="{{ path('admin_product_create') }}">Ajouter un produit</a>
+        </div>
+   </div>
+
+{% endblock %}

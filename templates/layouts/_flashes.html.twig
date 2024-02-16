@@ -1,0 +1,22 @@
+
+{% for type, messages in app.flashes %}
+    <div class="flashes-container">
+    {% for message in messages %}
+    
+        {% if type is same as 'sessionStorage_remove' %}
+            <div data-controller="sessionstorageremover" data-items={{ message }}></div>
+
+        {% else %}
+            <div class="alert alert-{{ type }}" data-controller="alert">
+                <span>{{ message }}</span>
+                <button class="alert-closer" arial-label="Fermer">
+                    <svg class="icon i-close">
+                        <use xlink:href="/svg/sprite.svg#close"></use>
+                    </svg>
+                </button>
+            </div>
+        {% endif %}
+       
+    {% endfor %}
+    </div>
+{% endfor %}

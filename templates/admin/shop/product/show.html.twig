@@ -1,0 +1,77 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_product_index') }} class="breadcrumb-link">Produits ({{count_products}})</a>
+        >
+        <span class="breadcrumb-item">{{ product.designation }}</span>
+    </div>
+
+    <div class="admin-product-show">
+
+        
+        <h1>{{ product.designation }}</h1>
+
+        <div class="admin-product-show-pictures">
+            {% if product_picture_position_resolver(product, 1) is not null %}
+            {{ include('admin/parts/_show_img.html.twig', {picture: product_picture_position_resolver(product, 1), label: 'Photo principale', name: 'pictureOne'}) }}  {# name utile seulement pour les tests #}
+            {% endif %}
+            {% if product_picture_position_resolver(product, 2) is not null %}
+            {{ include('admin/parts/_show_img.html.twig', {picture: product_picture_position_resolver(product, 2), label: 'Photo n°2', name: 'pictureTwo'}) }}
+            {% endif %}
+            {% if product_picture_position_resolver(product, 3) is not null %}
+            {{ include('admin/parts/_show_img.html.twig', {picture: product_picture_position_resolver(product, 3), label: 'Photo n°3', name: 'pictureThree'}) }}
+            {% endif %}
+        </div>
+        
+        {{ include('admin/parts/_show_row.html.twig', {value: product.designation, label: 'Désignation', name: 'designation'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.slug, label: 'Slug', name: 'slug'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.category.name ?? null, label: 'Catégorie', name: 'category'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.subCategory.name ?? null, label: 'Sous-catégorie', name: 'subCategory'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.price | price_format, label: 'Prix', name: 'price'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.stock, label: 'Stock', name: 'stock'}) }}
+        
+        {{ include('admin/parts/_show_row.html.twig', {value: product.publicRef, label: 'Réf. publique', name: 'publicRef'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: product.privateRef, label: 'Réf. privée', name: 'privateRef'}) }}
+        
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Produits suggérés</div>
+            <ul class="admin-product-list">
+                {% for suggestedProduct in product.suggestedProducts %}
+                    {% set firstPicture = product_picture_position_resolver(suggestedProduct, 1) %}
+                    <li class="admin-product-list-item suggestedProducts">
+                        <img class="admin-product-list-item-img" src={{ firstPicture | picture_path_resolver('index') }} alt={{ firstPicture | picture_alt_resolver }}>
+                        <div class="admin-product-list-item-text">
+                            <strong class="suggestedProduct">{{ suggestedProduct.designation }}</strong>   {# la classe suggestedProduct sert pour les tests #}
+                            {% if suggestedProduct.category %} dans {{ suggestedProduct.category.name }}{% endif %}
+                            {% if suggestedProduct.subCategory %} / {{ suggestedProduct.subCategory.name }}{% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="admin-buttons-wrapper">
+            <a class="admin-button" href={{ path('admin_product_update', {id: product.id}) }}>Modifier</a>
+            <form action={{ path('admin_product_delete') }} method="POST">
+                <button class="admin-button secondary-color" type="submit" name="id" value={{ product.id }}
+                        data-controller="deleteconfirm" data-deletemessage='Supprimer_définitivement_le_produit_"{{ product.designation }}" ?'
+                >
+                    Supprimer
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

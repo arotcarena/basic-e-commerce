@@ -1,0 +1,57 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_category_index') }} class="breadcrumb-link">Catégories ({{ count_categories }})</a>
+        >
+        <a href={{ path('admin_category_show', {id: category.id}) }} class="breadcrumb-link">{{ category.name }}</a>
+        >
+        <span class="breadcrumb-item">{{ subCategory.name }}</span>
+    </div>
+
+    <h1>Sous-catégorie "{{ subCategory.name }}"</h1>
+
+
+    <div class="admin-product-show">
+
+        <div class="admin-product-show-pictures">
+            {% if subCategory.picture is not null %}
+            {{ include('admin/parts/_show_img.html.twig', {picture: subCategory.picture, label: 'Photo', name: 'picture'}) }}
+            {% endif %}
+        </div>
+        
+        {{ include('admin/parts/_show_row.html.twig', {value: subCategory.name, label: 'Nom', name: 'name'}) }}
+
+        {{ include('admin/parts/_show_row.html.twig', {value: subCategory.slug, label: 'Slug', name: 'slug'}) }}
+
+       
+        
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Catégorie parente</div>
+            <div class="admin-product-list-item">
+                {% if subCategory.parentCategory.picture is not null %}
+                {% set picture = subCategory.parentCategory.picture %}
+                <img class="admin-product-list-item-img" src={{ picture | picture_path_resolver('index') }} alt={{ picture | picture_alt_resolver }}>
+                {% endif %}
+                <div class="admin-product-list-item-text parentCategory">
+                    {{ subCategory.parentCategory.name }}
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-buttons-wrapper">
+            <a class="admin-button" href={{ path('admin_subCategory_update', {id: subCategory.id}) }}>Modifier</a>
+            <form action={{ path('admin_subCategory_delete') }} method="POST">
+                <button class="admin-button secondary-color" type="submit" name="id" value={{ subCategory.id }}
+                        data-controller="deleteconfirm" data-deletemessage='Supprimer_définitivement_la_sous-catégorie_"{{ subCategory.name }}" ?'
+                >
+                    Supprimer
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

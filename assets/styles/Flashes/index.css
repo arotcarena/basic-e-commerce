@@ -1,0 +1,39 @@
+.flashes-container {
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    width: auto;
+    max-width: calc(90vw);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 20px;
+}
+
+.alert {
+    border-radius: 4px;
+    padding: 15px 40px 15px 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+    position: relative;
+}
+.alert .alert-closer {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    color: inherit;
+}
+.alert .alert-closer .i-close {
+    width: 1.7em;
+    height: 1.7em;
+}
+.alert-success {
+    background-color: rgb(197, 255, 197);
+    color: green;
+}
+.alert-danger {
+    background-color: rgb(255, 197, 193);
+    color: red;
+}

@@ -1,0 +1,22 @@
+
+
+.admin-header-logo {
+    position: absolute;
+    left: calc(50% - 75px);
+    top: 0;
+    width: 150px;
+    height: auto;
+}
+
+
+
+.admin-header {
+    height: 55px;
+    box-shadow: 0 0 1px var(--color-admin-lightgrey);
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFF;
+}

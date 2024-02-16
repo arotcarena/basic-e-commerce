@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ subCategory.name }}{% endblock %}
+
+{% block add_stylesheets %}
+    {{ encore_entry_link_tags('productIndex') }}
+{% endblock %}
+
+{% block add_javascripts %}
+    {{ encore_entry_script_tags('productIndex') }}
+{% endblock %}
+
+{% block body %}
+    <div class="breadcrumb">
+        <a href={{ path('home') }} class="breadcrumb-home-link">Accueil</a>
+        >
+        <a href={{ path('category_show', {slug: category.slug}) }} class="breadcrumb-link">{{ category.name }}</a>
+        >
+        <span class="breadcrumb-item">{{ subCategory.name }}</span>
+    </div>
+
+    <div id="product-index" data-categoryid={{ category.id }}  data-subcategoryid={{ subCategory.id }}>
+        <h1>{{ subCategory.name }}</h1>
+    </div>
+{% endblock %}

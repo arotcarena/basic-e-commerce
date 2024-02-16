@@ -1,0 +1,113 @@
+.side-menu-container {
+    animation: fadeIn .2s forwards;
+}
+.side-menu-container.close {
+    animation: fadeOut .2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+@keyframes fadeOut {
+    from {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.side-menu {
+    height: 100%;
+    background-color: white;
+    animation: slideOpen ease-in-out .2s forwards;
+    position: relative;
+}
+.side-menu.right {
+    margin-left: auto;
+}
+.side-menu-container.close .side-menu {
+    animation: slideClose ease-in-out .2s forwards;
+}
+
+
+@keyframes slideOpen {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes slideClose {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+
+.side-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    position: relative;
+}
+
+.side-menu.right .modal-closer {
+    right: auto;
+    left: 10px;
+}
+
+.side-menu-nav {
+    margin: 40px 0;
+}
+.side-menu-link {
+    display: block;
+    width: 100%;
+    font-size: 1.4em;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color .3s;
+}
+.side-menu-link.selected, .side-menu-link:hover {
+    color: var(--color-hover);
+}
+.side-menu-link .i-expand-more {
+    transition: transform .3s;
+    width: 1.4em;
+    height: 1.4em;
+}
+.side-menu-link.selected .i-expand-more {
+    transform: rotate(180deg);
+}
+.side-menu-sublink {
+    display: block;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    transition: color .3s;
+}
+.side-menu-sublink:hover {
+    color: var(--color-hover);
+}
+
+
+@media screen and (min-width: 600px)
+{
+    .side-menu {
+        max-width: 460px;
+    }
+}
+
+
+

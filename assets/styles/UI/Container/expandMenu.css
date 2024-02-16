@@ -1,0 +1,31 @@
+
+.expand-menu-container {
+    position: fixed;
+    top: 110px;
+    left: 0;
+    right: 0;
+    padding-top: 2px;
+    cursor: default;
+}
+.expand-menu {
+    background-color: #FFF;
+    border-radius: 6px;
+    border-bottom: solid 1px rgba(185, 185, 185, 0.5);
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+
+.expand-closer {
+    color: var(--color-black);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+.expand-closer .i-close {
+    width: 30px;
+    height: 30px;
+}

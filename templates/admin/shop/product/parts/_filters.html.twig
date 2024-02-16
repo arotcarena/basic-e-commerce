@@ -1,0 +1,31 @@
+{{ form_start(filter_form) }}
+    <div class="admin-filters-container">
+        <div class="admin-filters">
+            <div class="admin-filters-row">            
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'q', label: 'Recherche par texte', field: filter_form.q}) }}
+            </div>
+
+            <div class="admin-filters-row">   
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'category', label: 'Catégorie', field: filter_form.category}) }}
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'subCategory', label: 'Sous-catégorie', field: filter_form.subCategory}) }}
+            </div>
+            
+            <div class="admin-filters-row">   
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'minPrice', label: 'Prix min.', field: filter_form.minPrice}) }}
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'maxPrice', label: 'Prix max.', field: filter_form.maxPrice}) }}
+            </div>
+            
+            <div class="admin-filters-row">   
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'minStock', label: 'Stock min.', field: filter_form.minStock}) }}
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'maxStock', label: 'Stock max.', field: filter_form.maxStock}) }}
+            </div>
+            
+            <div class="admin-filters-row">   
+                {{ include('admin/form/_admin_form_row.html.twig', {name: 'sortBy', label: 'tri', field: filter_form.sortBy}) }}
+            </div>
+        </div>
+        <div class="admin-filters-submit">
+            <button type="submit" class="admin-button">Recherche</button>
+        </div>
+    </div>
+{{ form_end(filter_form) }}

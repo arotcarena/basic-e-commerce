@@ -1,0 +1,11 @@
+{% extends "email/base.html.twig" %}
+
+{% block title %}Commande validée{% endblock %}
+
+{% block body %}
+    <h1>Merci pour votre commande</h1>
+
+    <p>Nous avons bien reçu votre paiement d'un montant de {{ purchase.totalPrice | price_format }} pour la commande n°{{ purchase.ref }}</p>
+
+
+{% endblock %}

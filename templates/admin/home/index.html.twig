@@ -1,0 +1,61 @@
+{% extends "admin/admin_base.html.twig" %}
+
+
+{% block body %}
+
+    <h1>Administration</h1>
+
+    <main class="admin-blocks-container">
+
+        <section class="admin-block">
+            <h2 class="admin-block-title">Boutique</h2>
+            <div class="admin-block-body">
+                <p class="admin-block-text">
+                    <strong>{{ product_count }}</strong> produits
+                </p>
+                <p class="admin-block-text text-small">
+                    <strong>{{ noStock_count }}</strong> en rupture de stock
+                </p>
+                <p class="admin-block-text">
+                    <strong>{{ category_count }}</strong> catégories
+                </p>
+                <p class="admin-block-text">
+                    <strong>{{ subCategory_count }}</strong> sous-catégories
+                </p>
+                <p class="admin-block-text">
+                    <strong>{{ reviews_pending_count }}</strong> avis à modérer
+                </p>
+            </div>
+            <div class="admin-block-controls">
+                <a href="{{ path('admin_product_index') }}" class="admin-button">Gérer les produits</a>
+                <a href="{{ path('admin_category_index') }}" class="admin-button">Gérer les catégories</a>
+                <a href="{{ path('admin_review_index') }}" class="admin-button secondary-color">Modérer les avis</a>
+            </div>
+        </section>
+
+        <section class="admin-block">
+            <h2 class="admin-block-title">Commandes</h2>
+            <div class="admin-block-body">
+                <p class="admin-block-text purchases-in-process">
+                    <strong>{{ purchases_in_process_count }}</strong> Commande{% if purchases_in_process_count > 1 %}s{% endif %}
+                      en cours
+                </p>
+            </div>
+            <div class="admin-block-controls">
+                <a href={{ path('admin_purchase_index') }} class="admin-button">Gérer les commandes</a>
+            </div>
+        </section>
+
+        <section class="admin-block">
+            <h2 class="admin-block-title">Stats Clients</h2>
+            <div class="admin-block-body">
+                <p class="admin-block-text user-count">
+                    <strong>{{ user_count }}</strong> Utilisateur{% if user_count > 1 %}s{% endif %} inscrit{% if user_count > 1 %}s{% endif %}
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+
+{% endblock %}

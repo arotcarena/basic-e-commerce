@@ -1,0 +1,29 @@
+<div class="admin-form-group {{ name }}-group {% if form_errors(field) %}is-invalid{% endif %}">
+    {# class pas bon à modif #}
+    {{ form_label(field, label, {
+        attr: {
+            class: 'admin-form-label'    
+        }
+    }) }}
+
+    {% if default is defined %}
+        {{ form_widget(field, {
+            attr: {
+                class: 'admin-form-control',
+                value: default
+            }
+        }) }}
+    {% else %}
+    {{ form_widget(field, {
+            attr: {
+                class: 'admin-form-control',
+            }
+    }) }}
+    {% endif %}
+    
+    {% if form_errors(field) %}
+        <div class="admin-form-error">
+            {{ form_errors(field) }}
+        </div>
+    {% endif %}
+</div>

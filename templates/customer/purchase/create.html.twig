@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Passer commande{% endblock %}
+
+{% block add_stylesheets %}
+    {{ encore_entry_link_tags('checkout') }}
+{% endblock %}
+
+{% block add_javascripts %}
+    {{ encore_entry_script_tags('checkout') }}
+{% endblock %}
+
+
+{% block body %}
+    <div id="checkout">
+        <h1>Passer Commande</h1>
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+
+.admin-button {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-admin);
+    height: 55px;
+    padding: 0 25px;
+    border-radius: 6px;
+    color: #FFF;
+    transition: all .3s;
+    margin: 10px;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+.admin-button.disabled {
+    background-color: var(--color-admin-light);
+}
+.admin-button.disabled:hover {
+    background-color: var(--color-admin-light);
+}
+.admin-button.secondary-color {
+    background-color: var(--color-admin-secondary);
+    color: var(--color-admin-black);
+}
+.admin-button.secondary-color.disabled {
+    background-color: #f3f1f1;
+}
+.admin-button.secondary-color.disabled:hover {
+    background-color: #f3f1f1;
+}
+.admin-button:hover {
+    background-color: var(--color-admin-dark);
+}
+.admin-button.secondary-color:hover {
+    background-color: var(--color-admin-secondary-dark);
+}
+.admin-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin-buttons-fixed-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+    position: sticky;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+}
+.admin-buttons-fixed-wrapper .admin-button {
+    border-radius: 1000px;
+    box-shadow: 0 0 4px var(--color-admin-lightgrey);
+}
+
+
+.admin-button.admin-small-button {
+    height: 35px;
+    font-size: 0.9em;
+}

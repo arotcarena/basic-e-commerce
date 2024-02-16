@@ -1,0 +1,94 @@
+/*table*/
+.admin-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: calc(100vw - 40px);
+    margin: 0 auto;
+    overflow: auto;
+}
+.admin-table th {
+    background-color: var(--color-admin);
+    height: 55px;
+    color: white;
+}
+.admin-table tfoot th {
+    background-color: var(--color-admin-secondary);
+    color: inherit;
+}
+.admin-table tbody tr:nth-child(even) {
+    background-color: rgb(247, 247, 247);
+}
+.admin-table.no-striped tr:nth-child(even) {
+    background-color: inherit;
+}
+.admin-table td, .admin-table th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+}
+.admin-table tbody tr .admin-table-td-img {
+    padding: 5px 20px;
+}
+.admin-table-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.admin-table .admin-table-img-text {
+    display: block;
+    margin-top: 6px;
+    font-weight: 400;
+}
+.admin-table td.admin-table-img-td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.admin-table-expand-cell-line .admin-table-controls {
+    flex-direction: row;
+}
+.admin-table-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.admin-table .icon {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.admin-table-expand-cell-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(230, 230, 230);
+    padding: 5px 15px;
+}
+.admin-table-category-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+}
+.admin-table-main-img {
+    width: auto;
+    height: 90%;
+    max-height: 150px;
+}
+.admin-table-subCategory-img-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-table-big {
+    font-size: 1.4em;
+}
+.admin-table-medium {
+    font-size: 1.2em;
+}
+
+.admin-table tr.strong {
+    font-weight: 600;
+}

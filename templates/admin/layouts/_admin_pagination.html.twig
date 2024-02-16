@@ -1,0 +1,28 @@
+{# default Sliding pagination control implementation #}
+{% if pageCount > 1 %}
+    <div class="admin-pagination">
+        {% if first is defined and current != first %}
+            <a class="admin-pagination-arrow first" href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
+        {% endif %}
+
+        {% if previous is defined %}
+            <a class="admin-pagination-arrow previous" rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <a class="admin-pagination-page" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            {% else %}
+                <span class="admin-pagination-page current">{{ page }}</span>
+            {% endif %}
+        {% endfor %}
+
+        {% if next is defined %}
+            <a class="admin-pagination-arrow next" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
+        {% endif %}
+
+        {% if last is defined and current != last %}
+            <a class="admin-pagination-arrow last" href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+        {% endif %}
+    </div>
+{% endif %}

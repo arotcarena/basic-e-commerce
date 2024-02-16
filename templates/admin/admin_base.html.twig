@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {% include "admin/layouts/_admin_header.html.twig" %}
+{% endblock %}
+
+{% block main_styles_and_javascripts %}
+    {{ encore_entry_link_tags('admin') }}
+    {{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+
+{% block pageClass %}admin-page{% endblock %}

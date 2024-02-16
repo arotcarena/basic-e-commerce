@@ -1,0 +1,106 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <a href={{ path('admin_purchase_index') }} class="breadcrumb-link">Commandes ({{count_purchases}})</a>
+        >
+        <span class="breadcrumb-item">Commande n°{{ purchase.ref }}</span>
+    </div>
+
+    <h1>Commande n°{{ purchase.ref }}</h1>
+
+    <div class="admin-product-show">
+        
+        
+        {{ include('admin/parts/_show_row.html.twig', {value: purchase.ref, label: 'Réf.', name: 'ref'}) }}
+
+        {% set user = purchase.user %}
+        {% if user is not null %}
+            {% set userDetails = user.civility ~ ' ' ~ user.firstName ~ ' ' ~ user.lastName %}
+            {{ include('admin/parts/_show_row.html.twig', {value: userDetails, label: 'Client', name: 'userDetails'}) }}
+            {{ include('admin/parts/_show_row.html.twig', {value: user.email, label: 'Adresse email', name: 'email'}) }}
+        {% endif %}
+        
+       
+        
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Adresse de livraison</div>
+            {% set detail = purchase.deliveryDetail %}
+            <div class="deliveryDetail">
+                <p>{{ detail.civility }} {{ detail.firstName }} {{ detail.lastName }}</p>
+                <p>{{ detail.lineOne }}</p>
+                <p>{{ detail.lineTwo }}</p>
+                <p>{{ detail.postcode }} {{ detail.city }}</p>
+                <p>{{ detail.country }}</p>
+            </div>
+        </div>
+           
+        
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Adresse de facturation</div>
+            {% set detail = purchase.invoiceDetail %}
+            <div class="invoiceDetail">
+                <p>{{ detail.civility }} {{ detail.firstName }} {{ detail.lastName }}</p>
+                <p>{{ detail.lineOne }}</p>
+                <p>{{ detail.lineTwo }}</p>
+                <p>{{ detail.postcode }} {{ detail.city }}</p>
+                <p>{{ detail.country }}</p>
+            </div>
+        </div>
+
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Détail de la commande</div>
+            <table class="admin-table no-striped">
+                <thead>
+                    <tr>
+                        <th>Réf. publique</th>
+                        <th>Désignation</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Sous-total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for purchaseLine in purchase.purchaseLines %}
+                        <tr class="purchaseLine">
+                            <td class="productPublicRef">{{ purchaseLine.product.publicRef }}</td>
+                            <td class="productDesignation">{{ purchaseLine.product.designation }}</td>
+                            <td class="quantity">{{ purchaseLine.quantity }}</td>
+                            <td class="productPrice">{{ purchaseLine.product.price | price_format }}</td>
+                            <td class="lineTotalPrice">{{ purchaseLine.totalPrice | price_format }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th colspan="3"></th>
+                        <th class="totalPrice">{{ purchase.totalPrice | price_format }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="admin-product-show-row">
+            <div class="admin-product-show-row-label">Status</div>
+            <div id="purchase-status-updater" data-id={{ purchase.id }} data-status={{ purchase.status }}>
+                {# géré par React #}
+                <div class="status">{{ purchase.statusLabel }}</div> {# utile pour le test et pour affichage temporaire avant que le js fonctionne #}
+            </div>
+        </div>
+        
+        {{ include('admin/parts/_show_row.html.twig', {value: purchase.createdAt.format('d/m/Y H:i'), label: 'Passée le', name: 'createdAt'}) }}
+
+        {% if purchase.paidAt is not null %}
+            {{ include('admin/parts/_show_row.html.twig', {value: purchase.paidAt.format('d/m/Y H:i'), label: 'Payée le', name: 'paidAt'}) }}
+        {% endif %}
+            
+
+        
+        
+    </div>
+
+{% endblock %}

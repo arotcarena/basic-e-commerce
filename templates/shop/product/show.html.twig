@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ product.designation }}{% endblock %}
+
+
+{% block body %}
+    {% include "shop/product/_show_breadcrumb.html.twig" %}
+
+    <div class="product-show">
+        <div class="product-left-col">
+            <div class="product-img-block">
+                <div class="product-main-img-container" data-controller="mainimg">
+                    {% set firstPicture = product | product_picture_position_resolver(1) %}
+                    <img class="product-first-img" src="{{ firstPicture | picture_path_resolver('show_first') }}" alt="{{ firstPicture | picture_alt_resolver }}">
+                </div>
+                {% for picture in product.pictures %}
+                    {% if picture.listPosition is not same as 1 %}
+                        <img class="product-secondary-img" src="{{ picture | picture_path_resolver('show') }}" alt="{{ picture | picture_alt_resolver }}">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product-right-col">
+            <h1>{{ product.designation }}</h1>
+            <p>{{ product.price | price_format }}</p>
+            <button class="button product-show-add-button" data-controller="productshowaddbutton" data-productid={{ product.id }} data-productprice={{ product.price }} data-quantitytoadd="1">
+                Ajouter au panier
+            </button>
+        </div>
+    </div>
+{% endblock %}
+

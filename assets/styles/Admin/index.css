@@ -1,0 +1,96 @@
+:root {
+    --color-admin: rgb(49 151 149);
+    --color-admin-dark: rgb(37, 116, 114);
+    --color-admin-light: rgb(84, 145, 144);
+    --color-admin-secondary: rgb(237 242 247);
+    --color-admin-secondary-dark: rgb(223, 228, 233);
+    --color-admin-secondary-light: rgb(244, 245, 247);
+    --color-admin-black: rgb(25, 25, 25);
+    --color-admin-lightgrey: rgb(185, 185, 185);
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--color-admin-black);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+button.disabled {
+    cursor: default;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.admin-link {
+    text-decoration: underline;
+}
+
+.no-white-space-wrap {
+    white-space: nowrap;
+}
+
+
+:root {
+    --color-black: rgb(25, 25, 25);
+    --color-lightgrey: rgb(185, 185, 185);
+    --color-hover: lightcoral;
+}
+
+
+
+.page {
+    margin-top: 60px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    display: block;
+}
+
+.admin-row {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.admin-header, .admin-page {
+    font-family: sans-serif;
+}
+
+
+
+.admin-page {
+    padding: 60px 0;
+}
+
+

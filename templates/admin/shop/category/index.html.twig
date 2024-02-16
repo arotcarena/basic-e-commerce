@@ -1,0 +1,101 @@
+{% extends "admin/admin_base.html.twig" %}
+
+{% block body %}
+
+    <div class="breadcrumb">
+        <a href={{ path('admin_home') }} class="breadcrumb-home-link">Administration</a>
+        >
+        <span class="breadcrumb-item">Catégories ({{count_categories}})</span>
+    </div>
+
+   <div class="admin-container">
+        <h1>Catégories</h1>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Catégories</th>
+                    <th style="width: 45%;">Sous-catégories</th>
+                    <th style="width: 20%;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr class="admin-table-line">
+                        <td>
+                            <div class="admin-table-category-container">
+                                <span class="admin-table-big">{{ category.listPosition }}.</span>
+                                <img class="admin-table-main-img" src="{{ category.picture | picture_path_resolver }}" alt="{{ category.picture | picture_alt_resolver }}">
+                                <span class="admin-table-main-img-text">{{ category.name }}</span>
+                            </div>
+                        </td>
+                        <td class="admin-table-expand-cell">
+                            {% for subCategory in category.subCategories %}
+                                <div class="admin-table-expand-cell-line">
+                                    <div class="admin-table-subCategory-img-container">
+                                        <span class="admin-table-medium">{{ subCategory.listPosition }}.</span>
+                                        <img class="admin-table-img" src={{ subCategory.picture | picture_path_resolver }} alt={{ subCategory.picture | picture_alt_resolver }}>
+                                    </div>
+                                    <span>{{ subCategory.name }}</span>
+                                    <span class="admin-table-controls">
+                                        <a class="admin-table-button success" href="{{ path('admin_subCategory_show', {id: subCategory.id}) }}" title='Voir la sous-catégorie "{{ subCategory.name }}"'>
+                                            <svg class="icon">
+                                                <use xlink:href="/svg/sprite.svg#eye"></use>
+                                            </svg>
+                                        </a>
+                                        <a class="admin-table-button success" href="{{ path('admin_subCategory_update', {id: subCategory.id}) }}" title='Modifier la sous-catégorie "{{ subCategory.name }}"'>
+                                            <svg class="icon">
+                                                <use xlink:href="/svg/sprite.svg#edit"></use>
+                                            </svg>
+                                        </a>
+                                        <form action="{{ path('admin_subCategory_delete') }}" method="POST">
+                                            <button class="admin-table-button danger" name="id" value="{{ subCategory.id }}" type="submit" title='Supprimer la sous-catégorie "{{ subCategory.name }}"'
+                                                    data-controller="deleteconfirm" data-deletemessage='Supprimer_définitivement_la_sous-catégorie_"{{ subCategory.name }}" ?'
+                                            >
+                                                <svg class="icon">
+                                                    <use xlink:href="/svg/sprite.svg#delete"></use>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </span>
+                                </div>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <div class="admin-table-controls">
+                                <a class="admin-table-button success" href="{{ path('admin_category_show', {id: category.id}) }}" title='Voir la catégorie "{{ category.name }}"'>
+                                    <svg class="icon">
+                                        <use xlink:href="/svg/sprite.svg#eye"></use>
+                                    </svg>
+                                </a>
+                                <a class="admin-table-button success" href="{{ path('admin_category_update', {id: category.id}) }}" title='Modifier la catégorie "{{ category.name }}"'>
+                                    <svg class="icon">
+                                        <use xlink:href="/svg/sprite.svg#edit"></use>
+                                    </svg>
+                                </a>
+                                <form action="{{ path('admin_category_delete') }}" method="POST">
+                                    <button class="admin-table-button danger" name="id" value="{{ category.id }}" type="submit" title='Supprimer la catégorie "{{ category.name }}"'
+                                            data-controller="deleteconfirm" data-deletemessage='Supprimer_définitivement_la_catégorie_"{{ category.name }}" ainsi que les sous-catégories associées ?'
+                                    >
+                                        <svg class="icon">
+                                            <use xlink:href="/svg/sprite.svg#delete"></use>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+        <div class="admin-buttons-fixed-wrapper">
+            <a class="admin-button" href="{{ path('admin_category_create') }}">Ajouter une catégorie</a>
+            <a class="admin-button secondary-color" href="{{ path('admin_subCategory_create') }}">Ajouter une sous-catégorie</a>
+        </div>
+   </div>
+
+{% endblock %}

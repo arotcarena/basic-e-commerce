@@ -1,0 +1,7 @@
+<div>
+    <div class="admin-form-img-container">
+        <img class={{ name }} src={{ picture | picture_path_resolver('index') }} alt={{ picture | picture_alt_resolver }}>
+        <div class="admin-form-img-alt{% if name is defined %} {{name ~ 'Alt'}}{% endif %}">Balise alt : {{ picture | picture_alt_resolver }}</div>
+    </div>
+    <div class="admin-show-img-label">{{ label }}</div>
+</div>
